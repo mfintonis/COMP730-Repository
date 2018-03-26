@@ -27,27 +27,15 @@ public class StateMachine {
 		_state.CurrentState();
 	}
 
-	public void TakePath(StatePaths action) {
-		
-		switch(action) {
-		case a:
-			StateA();
-		case b:
-			StateB();
-		case c:
-			StateC();
-		}
-	}
-
-	private void StateA() {
+	public void StateA() {
 		_state.StateA();
 	}
 
-	private void StateB() {
+	public void StateB() {
 		_state.StateB();
 	}
 
-	private void StateC() {
+	public void StateC() {
 		_state.StateC();
 	}
 }

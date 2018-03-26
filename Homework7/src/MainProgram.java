@@ -14,13 +14,13 @@ public class MainProgram {
 
 			switch(strInput.toLowerCase()) {
 			case "a":
-				stateMachine.TakePath(StatePaths.a);
+				stateMachine.StateA();
 				break;
 			case "b":
-				stateMachine.TakePath(StatePaths.b);
+				stateMachine.StateB();
 				break;
 			case "c":
-				stateMachine.TakePath(StatePaths.c);
+				stateMachine.StateC();
 				break;
 			case "current":
 				stateMachine.GetCurrentState();
