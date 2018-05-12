@@ -1,6 +1,5 @@
 package Main;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.Random;
@@ -8,11 +7,19 @@ import java.util.Random;
 public class VerbDecorator extends AdjectiveDecorator {
 
 	private String[] arrOfVerbs = { "shriek", "fight", "cook", "command", "damage", "impress", "lecture", "memorize", "pop", "whisper" };
-	private int index = -1;
+	
+	//This has to be public for the test case to access it. I think this is because they are in separate packages.
+	public int index = -1;
 	
 	public VerbDecorator(Reader reader) {
 		super(reader);
 	}
+	
+	public VerbDecorator(Reader reader, int startingIndex) {
+		super(reader, startingIndex);
+		index = startingIndex;
+	}
+
 	
 	@Override
 	public String readLine() throws IOException {

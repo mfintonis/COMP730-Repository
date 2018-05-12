@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.Random;
 
-public class AdverbDecorator extends VerbDecorator {
+public class AdverbDecorator extends BufferedReader {
 
 	private String[] arrOfAdverbs = { "awkwardly", "briskly", "carefully", "effortlessly", "happily", "lazily", "really", "worriedly", "slowly", "quickly" };
 	
@@ -14,6 +14,11 @@ public class AdverbDecorator extends VerbDecorator {
 	
 	public AdverbDecorator(Reader reader) {
 		super(reader);
+	}
+	
+	public AdverbDecorator(Reader reader, int startingIndex) {
+		super(reader);
+		index = startingIndex;
 	}
 	
 	@Override

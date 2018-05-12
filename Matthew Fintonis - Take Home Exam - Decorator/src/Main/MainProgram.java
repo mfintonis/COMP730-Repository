@@ -7,9 +7,10 @@ import java.io.IOException;
 
 public class MainProgram {
 	public static void main(String [] args) throws IOException {
-		//BufferedReader reader = new VerbDecorator(new AdjectiveDecorator(new AdverbDecorator(new FileReader(new File("File01.txt")))));
-		BufferedReader bufferedReader = new BufferedReader(new FileReader(new File("File01.txt")));
-		BaseReader reader = new BaseReader(bufferedReader);
+		
+		VerbDecorator reader = new VerbDecorator(new AdjectiveDecorator(new AdverbDecorator(new BufferedReader(new FileReader(new File("File01.txt")))))); 
+		
+		//BaseReader reader = new BaseReader(bufferedReader);
 		
 		System.out.println("Results of parsing File01.txt:\n");
 		
@@ -24,8 +25,7 @@ public class MainProgram {
 		System.out.println("\n****************");
 		System.out.println("****************\n");
 		
-		bufferedReader = new BufferedReader(new FileReader(new File("File02.txt")));
-		reader = new BaseReader(bufferedReader);
+		reader = new VerbDecorator(new AdjectiveDecorator(new AdverbDecorator(new FileReader(new File("File02.txt"))))); 
 		
 		System.out.println("Results of parsing File02.txt:\n");
 		

@@ -1,19 +1,23 @@
 package Main;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.Random;
 
-public class AdjectiveDecorator extends BufferedReader {
+public class AdjectiveDecorator extends AdverbDecorator {
 
-	private String[] arrOfAdjectives = { "random", "red", "tall", "short", "young", "old", "smart", "metallic", "large", "tiny" };
+	private String[] arrOfAdjectives = { "random", "red", "tall", "short", "young", "smart", "old", "metallic", "large", "tiny" };
 	
 	//This has to be public for the test case to access it. I think this is because they are in separate packages.
 	public int index = -1;
 	
 	public AdjectiveDecorator(Reader reader) {
 		super(reader);
+	}
+	
+	public AdjectiveDecorator(Reader reader, int startingIndex) {
+		super(reader, startingIndex);
+		index = startingIndex;
 	}
 	
 	@Override

@@ -11,41 +11,45 @@ import org.junit.jupiter.api.Test;
 
 import Main.AdjectiveDecorator;
 import Main.AdverbDecorator;
+import Main.VerbDecorator;
 
 class TestCases {
-
+	//Test only the Adverb Decorator with a random index
 	@Test
-	void TestAdjective() throws IOException {
-		AdjectiveDecorator adjDec = new AdjectiveDecorator(new BufferedReader(new FileReader(new File("File01.txt"))));
-		adjDec.index = 10;
+	void TestAdVerb() throws IOException {
+		String[] arrOfAdverbs = { "awkwardly", "briskly", "carefully", "effortlessly", "happily", "lazily", "really", "worriedly", "slowly", "quickly" };
+	
+		AdverbDecorator reader = new AdverbDecorator(new BufferedReader(new FileReader(new File("File01.txt"))));		
 		
 		String comparison = "";
-		String line = adjDec.readLine();
+		String line = reader.readLine();
 		while(line != null) {
 			comparison += line;
-			line = adjDec.readLine();
+			line = reader.readLine();
 		}
 		
-		adjDec.close();
+		int index = reader.index;
 		
-		assertEquals(comparison, "The random door was still open, just a little, where the knife and the man who held it had <<VERB>>ed in, and wisps of red mist <<VERB>>ed <<ADVERB>> and twined into the house through the tall door. ");
+		reader.close();
+		
+		assertEquals(comparison, "The <<ADJECTIVE>> door was still open, just a little, where the knife and the man who held it had <<VERB>>ed in, and wisps of <<ADJECTIVE>> mist <<VERB>>ed " + arrOfAdverbs[index] + " and twined into the house through the <<ADJECTIVE>> door. ");
 	}
 	
+	//Test all with predetermined indexes
 	@Test
-	void TestAll() throws IOException {
-		AdverbDecorator advDec = new AdverbDecorator(new BufferedReader(new FileReader(new File("File02.txt"))));
-		advDec.index = 10;
+	void TestAllWithKnownIndex() throws IOException {
+		VerbDecorator reader = new VerbDecorator(new AdjectiveDecorator(new AdverbDecorator(new BufferedReader(new FileReader(new File("File02.txt"))))), 3);
+		reader.index = 9;
 		
 		String comparison = "";
-		String line = advDec.readLine();
+		String line = reader.readLine();
 		while(line != null) {
 			comparison += line;
-			line = advDec.readLine();
+			line = reader.readLine();
 		}
 		
-		advDec.close();
+		reader.close();
 		
-		assertEquals(comparison, "The <<ADJECTIVE>> <<ADJECTIVE>> fox <<VERB>>ed over the <<ADJECTIVE>> dog. The dog just <<VERB>>ed awkwardly all day without a care in the <<ADJECTIVE>> world. ");
+		assertEquals(comparison, "The young smart fox shrieked over the old dog. The dog just fighted happily all day without a care in the metallic world. ");
 	}
-
 }
